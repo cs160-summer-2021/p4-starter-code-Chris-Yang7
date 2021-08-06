@@ -10,6 +10,10 @@
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
 
+    <!-- Using it to check the spelling of each word that the user put-->
+    <script type='text/javascript' src='/JavaScriptSpellCheck/include.js' ></script>
+    
+
     <style type="text/css">
     #screen {
         height: 900px;
@@ -34,8 +38,8 @@
     <!-- Another list for how many possible words we can generate from the given word
     and mapping each word to its possible words number-->
     <!-- A counter for users to count how many word they found-->
-    <!-- Checking if the word is valid by looking it in the dictionary, 
-    if the word does not exist, raise a alart to the user-->
+    <!-- Checking if the word is valid by using the JavaScriptSpellCheck, 
+    if the word does not exist, raise an alart to the user-->
     
     </div>
 </body>
