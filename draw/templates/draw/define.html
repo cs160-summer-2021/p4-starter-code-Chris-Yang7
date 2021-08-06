@@ -33,6 +33,21 @@
 </body>
 <script>
 
+    // API ref: https://learnsyntax.com/lets-create-a-dictionary-with-vanilla-javascript
+    const fetchData = async (word) => {
+    const result = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+
+    if (!result.ok) {
+        alert("No definition found");
+    return;
+    }
+
+    const data = await result.json();
+
+    };
+
     // setting up the canvas and one paper tool
     var canvas = document.getElementById('myCanvas');
     paper.setup(canvas);
