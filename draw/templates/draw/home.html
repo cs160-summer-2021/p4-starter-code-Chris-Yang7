@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
 
     <style type="text/css">
     #screen {
@@ -22,6 +23,111 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+
+    #top {
+        height: 400px;
+    }
+
+    #globe {
+        object-fit: cover;
+        height: 250px;
+        width: 250px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    #logo {
+        text-align: center;
+        line-height: 320px;
+        height: 80%;
+        padding-top: 40px;
+    }
+
+    #title {
+        height: 20%;
+        font-size: 72px;
+        text-align: center;
+        font-family: 'Numans';
+        color: #EDE7E3;
+        text-shadow: 3px 3px #FFA62B;
+        margin-top: -6px;
+    }
+
+    #bottom {
+        height: 500px;
+    }
+
+    .third {
+        height: 33.33333333333333%;
+        position: relative;
+    }
+
+    .button {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        background: #FFA62B;
+        border: 1px solid #FFFFFF;
+        box-sizing: border-box;
+        border-radius: 20px;
+        width: 272px;
+        height: 78px;
+        font-size: 32px;
+        font-family: 'Numans';
+        color: #EDE7E3;
+
+    }
+
+    #saved {
+        margin-top: -30px;
+    }
+
+    #instructions {
+        margin-top: -60px;
+    }
+
+    .button:hover {
+        background-color: #b49543;
+    }
+
+    /* The Overlay (background) */
+    .overlay {
+        /* Height & width depends on how you want to reveal the overlay (see JS below) */
+        height: 0;
+        width: 100%;
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        background-color: rgb(0,0,0); /* Black fallback color */
+        background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+        overflow-y: hidden; /* Disable horizontal scroll */
+        transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+    }
+
+    /* Position the content inside the overlay */
+    .overlay-content {
+        position: relative;
+        top: 10%; /* 25% from the top */
+        width: 100%; /* 100% width */
+        text-align: center; /* Centered text/links */
+        margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+        font-family: "Numans";
+        font-size: 20px;
+        color: whitesmoke;
+    }
+
+    .overlay .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 45px;
+        font-size: 45px;
+        color: red;
+    }
+
     </style>
 
 </head>
@@ -30,43 +136,64 @@
     <div id = 'screen'>
         <!-- implement the home logo as well as 3 buttons for start, saved words, and instructions-->
         <!-- use instructions as an overlay-->
-
+        <div id='top' class = 'w-100'>
+            <div id = 'logo' class = 'w-100'>
+                <img src="https://www.pngitem.com/pimgs/m/176-1765615_gold-globe-png-golden-globe-logo-png-transparent.png" id = 'globe'>
+            </div>
+            <div id = 'title' class = 'w-100'>
+                LearnIt
+            </div>
+        </div>
+        <div id = 'bottom' class = 'w-100'>
+            <div class = 'third w-100'>
+                <button class = 'button' id = 'start'>
+                    Start
+                </button>
+            </div>
+            <div class = 'third w-100 up'>
+                <button class = 'button' id = 'saved'>
+                    Saved Words
+                </button>
+            </div>
+            <div class = 'third w-100 up'>
+                <button class = 'button' id = 'instructions' onclick="openNav()">
+                    Instructions
+                </button>
+            </div>
+        </div>
+        <div id="myNav" class="overlay">
+            <!-- Button to close the overlay navigation -->
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <!-- Overlay content -->
+            <div class="overlay-content">
+                Instructions
+            </div></div>
     </div>
 </body>
+
 <script>
-    //start button navigates to word scramble
-    //saved words navigates to saved words
-    //instructions created an overay pop-up
-
-    // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    path.strokeColor = "red";
-
-    // getting the URL (you may want to use for Exercise 3)
     var url = window.location.href;
 
     var socket = new WebSocket(
         'ws://' + window.location.host + '/ws/draw');
 
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + "}" );
-    }
-
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
-    }
-
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
+    document.getElementById("start").onclick = function () {
+        location.href = ("/draw/create/");
     };
+
+    document.getElementById("saved").onclick = function () {
+        location.href = ("/draw/saved/");
+    };
+
+    /* Open when someone clicks on the span element */
+    function openNav() {
+        document.getElementById("myNav").style.height = "100%";
+    }
+
+    /* Close when someone clicks on the "x" symbol inside the overlay */
+    function closeNav() {
+        document.getElementById("myNav").style.height = "0%";
+    }
 
 </script>
 </html>
