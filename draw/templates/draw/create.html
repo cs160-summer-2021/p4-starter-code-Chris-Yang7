@@ -1,6 +1,13 @@
 {% load static %}
 
 <!DOCTYPE html>
+<!-- Randomly picking a word from the 9 letter words list 
+and then randommize the letter and put each letter in one of our block-->
+<!-- Another list for how many possible words we can generate from the given word
+and mapping each word to its possible words number-->
+<!-- A counter for users to count how many word they found-->
+<!-- Checking if the word is valid by using the JavaScriptSpellCheck, 
+if the word does not exist, raise an alart to the user-->
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -26,20 +33,341 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+    #home {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 360px;
+        top: 17px;
+    }
+    #shuffle_icon {
+        position: absolute;
+        width: 73.13px;
+        height: 41.95px;
+        left: 172px;
+        top: 482px;
+    }
+    #title {
+        position: absolute;
+        width: 414px;
+        height: 66px;
+        left: 0px;
+        top: 91px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 54px;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+    #b1_1 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 82px;
+        top: 190px;
+
+        background: #FFA62B;
+    }
+    #b1_2 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 174px;
+        top: 190px;
+
+        background: #FFA62B;
+    }
+    #b1_3 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 266px;
+        top: 190px;
+
+        background: #FFA62B;
+    }
+    #b2_1 {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        left: 82px;
+        top: 279px;
+
+        background: #FFA62B;
+    }
+    #b2_2 {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        left: 174px;
+        top: 279px;
+
+        background: #FFA62B;
+    }
+    #b2_3 {
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        left: 265px;
+        top: 279px;
+
+        background: #FFA62B;
+    }
+    #b3_1 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 83px;
+        top: 370px;
+
+        background: #FFA62B;
+    }
+    #b3_2 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 175px;
+        top: 370px;
+
+        background: #FFA62B;
+    }
+    #b3_3 {
+        position: absolute;
+        width: 70px;
+        height: 69px;
+        left: 265px;
+        top: 371px;
+
+        background: #FFA62B;
+    }
+    #shuffle {
+        position: absolute;
+        width: 113px;
+        height: 47px;
+        left: 152px;
+        top: 479px;
+        // background-image: url("../static/image/shuffle.png") no-repeat;
+
+        background-color: #FFA62B;
+        border: 1px solid #EDE7E3;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+    #words {
+        position: absolute;
+        width: 414px;
+        height: 55px;
+        left: 100px;
+        top: 553px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #C0E7EE;
+    }
+    #counter {
+        position: absolute;
+        width: 414px;
+        height: 55px;
+        left: 160px;
+        top: 594px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #C0E7EE;
+    }
+    #sb_1 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 13px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_2 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 57px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_3 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 101px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_4 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 145px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_5 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 189px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_6 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 233px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_7 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 277px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_8 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 321px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #sb_9 {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 365px;
+        top: 676px;
+
+        background: #FFA62B;
+    }
+    #check_box {
+        position: absolute;
+        width: 137px;
+        height: 63px;
+        left: 140px;
+        top: 771px;
+
+        background: #FFA62B;
+        border: 1px solid #EDE7E3;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+    .letter {
+        top: 210px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 48px;
+        line-height: 42px;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+    .check {
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
     </style>
 
 </head>
 <body>
     <!-- You may change the dimensions of this canvas -->
     <div id = 'screen'>
-
-    <!-- Randomly picking a word from the 9 letter words list 
-    and then randommize the letter and put each letter in one of our block-->
-    <!-- Another list for how many possible words we can generate from the given word
-    and mapping each word to its possible words number-->
-    <!-- A counter for users to count how many word they found-->
-    <!-- Checking if the word is valid by using the JavaScriptSpellCheck, 
-    if the word does not exist, raise an alart to the user-->
+    <img id = 'home' src="../../static/image/home.png">
+    <div id = 'title'>Word Creation</div>
+    <div id = 'b1_1' class = "letter">
+    <P></P>
+    N
+    </div>
+    <div id = 'b1_2' class = "letter">
+    <P></P>
+    O
+    </div>
+    <div id = 'b1_3' class = "letter">
+    <P></P>
+    I
+    </div>
+    <div id = 'b2_1' class = "letter">
+    <P></P>
+    E
+    </div>
+    <div id = 'b2_2' class = "letter">
+    <P></P>
+    A
+    </div>
+    <div id = 'b2_3' class = "letter">
+    <P></P>
+    T
+    </div>
+    <div id = 'b3_1' class = "letter">
+    <P></P>
+    D
+    </div>
+    <div id = 'b3_2' class = "letter">
+    <P></P>
+    U 
+    </div>
+    <div id = 'b3_3' class = "letter">
+    <P></P>
+    C 
+    </div>
+    <button id = 'shuffle'><img src = "../../static/image/shuffle.png"></button>
+    <div id = 'words'>Number of Possible Words: 339</div>
+    <div id = 'counter'>Word Found: 21</div>
+    <div id = 'sb_1'></div>
+    <div id = 'sb_2'></div>
+    <div id = 'sb_3'></div>
+    <div id = 'sb_4'></div>
+    <div id = 'sb_5'></div>
+    <div id = 'sb_6'></div>
+    <div id = 'sb_7'></div>
+    <div id = 'sb_8'></div>
+    <div id = 'sb_9'></div>
+    <button id = 'check_box' class = "check">&nbsp Check</button>
+    
     
     </div>
 </body>
