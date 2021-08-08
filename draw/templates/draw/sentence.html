@@ -202,7 +202,7 @@
 <body>
     <div id = 'screen'>
     <!-- User will be given the word they created and a few other words to create a sentence -->
-    <i class="fa fa-arrow-left"></i>
+    <i id = 'back' class="fa fa-arrow-left"></i>
     <img id = 'home' src="../../static/image/home.png">
     <div id = 'title'>Sentence</div>
     <div id = 'instructions'>Create a sentence with the following words:</div>
@@ -251,6 +251,10 @@
 
     document.getElementById("home").onclick = function () {
         location.href = ("/draw/home/");
+    };
+
+    document.getElementById("back").onclick = function () {
+        location.href = ("/draw/define/");
     };
 
     document.getElementById("check_box").onclick = function () {
