@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     #screen {
         height: 900px;
@@ -22,12 +23,132 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+
+    #home {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 360px;
+        top: 17px;
+    }
+    #title {
+        position: absolute;
+        width: 414px;
+        height: 66px;
+        left: 0px;
+        top: 91px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 54px;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+
+    #word {
+        position: absolute;
+        width: 414px;
+        height: 47px;
+        left: -14px;
+        top: 167px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 40px;
+        line-height: 47px;
+        text-align: center;
+        color: #EDE7E3;
+    }
+
+    .fa-bookmark-o {
+        position: absolute;
+        left: 245px;
+        top: 175px;
+        font-size: 30px;
+        color: #EDE7E3;
+    }
+
+    #next_box {
+        position: absolute;
+        width: 137px;
+        height: 63px;
+        left: 140px;
+        top: 771px;
+        background: #FFA62B;
+        border: 1px solid #EDE7E3;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+
+    .next {
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+        line-height: 28px;
+        align-items: center;
+        color: #EDE7E3;
+    }
+
+    #rectangle {
+        position: relative;
+        width: 322px;
+        height: 506px;
+        left: 46px;
+        top: 234px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    .fa-volume-up {
+        position: absolute;
+        font-size: 24px;
+        margin: 10px;
+        left: 90px;
+        top: 5px;
+        color: #16697A;
+    }
+
+    #parts-of-speech {
+        position: absolute;
+        font-family: Numans;
+        font-size: 26px;
+        line-height: 31px;
+        color: #16697A;
+        margin: 10px;
+        left: 10px;
+    }
+
+    #definition {
+        font-family: Numans;
+        position: absolute;
+        font-size: 20px;
+        line-height: 23px;
+        color: #16697A;
+        top: 30px;
+        margin: 20px;
+    }
+
     </style>
 
 </head>
 <body>
     <div id = 'screen'>
     <!-- Definition of word created by user is shown on this page -->
+        <img id = 'home' src="../../static/image/home.png">
+        <div id = 'title'>Definition</div>
+        <div id = 'word'>eat</div>
+        <i class="fa fa-bookmark-o"></i>
+        <div id = 'rectangle'>
+            <div id = 'parts-of-speech'>verb</div>
+            <i class="fa fa-volume-up"></i>
+            <p id = 'definition'>Definitions start here</p>
+        </div>
+        <button id = 'next_box' class = "next">Next</button>
 
     </div>
 </body>
@@ -76,6 +197,16 @@
 
     socket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');
+    };
+
+    // navigation
+
+    document.getElementById("home").onclick = function () {
+        location.href = ("/draw/home/");
+    };
+
+    document.getElementById("next_box").onclick = function () {
+        location.href = ("/draw/sentence/");
     };
 
 </script>

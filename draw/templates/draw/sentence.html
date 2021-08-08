@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     #screen {
         height: 900px;
@@ -22,13 +23,197 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
+    #home {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 360px;
+        top: 17px;
+    }
+    #title {
+        position: absolute;
+        width: 414px;
+        height: 66px;
+        left: 0px;
+        top: 91px;
+
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 54px;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+    #instructions {
+        position: absolute;
+        width: 372px;
+        height: 70px;
+        left: 21px;
+        top: 193px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+        color: #EDE7E3;
+    }
+
+    #check_box {
+        position: absolute;
+        width: 137px;
+        height: 63px;
+        left: 140px;
+        top: 771px;
+
+        background: #FFA62B;
+        border: 1px solid #EDE7E3;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+    .check {
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+
+    .fa-arrow-left {
+        position: absolute;
+        left: 5.07%;
+        right: 88.89%;
+        top: 2.79%;
+        bottom: 94.42%;
+        color: #EDE7E3;
+        font-size: 30px;
+        font-weight: lighter;
+    }
+
+    /* rectangle */
+    #r1 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 377px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    /* word */
+    #w1 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 390px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        align-items: center;
+        text-align: center;
+        color: #16697A;
+        z-index: 100;
+    }
+
+    #r2 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 225px;
+        top: 377px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    #w2 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 225px;
+        top: 390px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        align-items: center;
+        text-align: center;
+        color: #16697A;
+    }
+
+    #r3 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 459px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    #w3 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 472px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+        color: #16697A;
+    }
+
+    textarea {
+        margin-top: 550px;
+        margin-left: 81px;
+        height: 180px;
+        width: 260px;
+        border-radius: 10px;
+        border: none;
+        background-color: #EDE7E3;
+        outline: none;
+        color: #16697A;
+        font-size: 20px;
+    }
+
+    textarea::-webkit-input-placeholder {
+        color: #16697A;
+        font-size: 20px;
+        text-align: center;
+    }
+
     </style>
 
 </head>
 <body>
     <div id = 'screen'>
     <!-- User will be given the word they created and a few other words to create a sentence -->
-
+    <i class="fa fa-arrow-left"></i>
+    <img id = 'home' src="../../static/image/home.png">
+    <div id = 'title'>Sentence</div>
+    <div id = 'instructions'>Create a sentence with the following words:</div>
+    <div id = 'r1'></div>
+    <p id = 'w1'>word1</p>
+    <div id = 'r2'></div>
+    <p id = 'w2'>word2</p>
+    <div id = 'r3'></div>
+    <p id = 'w3'>word3</p>
+    <textarea placeholder="Type sentence here"></textarea>
+    <button id = 'check_box' class = "check">Check</button>
 
     </div>
 </body>
@@ -62,6 +247,14 @@
 
     socket.onclose = function(e) {
         console.error('Chat socket closed unexpectedly');
+    };
+
+    document.getElementById("home").onclick = function () {
+        location.href = ("/draw/home/");
+    };
+
+    document.getElementById("check_box").onclick = function () {
+        location.href = ("/draw/saved/");
     };
 
 </script>
