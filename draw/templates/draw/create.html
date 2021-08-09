@@ -19,7 +19,7 @@ if the word does not exist, raise an alart to the user-->
     <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
 
     <!-- Using it to check the spelling of each word that the user put-->
-    <script type='text/javascript' src='/JavaScriptSpellCheck/include.js' ></script>
+    <script type='text/javascript' src="{% static 'draw/vendor/JavaScriptSpellCheck/include.js' %}"></script>
 
 
     <style type="text/css">
@@ -390,7 +390,7 @@ if the word does not exist, raise an alart to the user-->
     <div id = 'sb_7' class = 'sb'></div>
     <div id = 'sb_8' class = 'sb'></div>
     <div id = 'sb_9' class = 'sb'></div>
-    <button id = 'check_box' class = "check">Check</button>
+    <button id = 'check_box' class = "check">Check</button >
 
     </div>
 </body>
@@ -412,7 +412,18 @@ if the word does not exist, raise an alart to the user-->
     };
 
     document.getElementById("check_box").onclick = function () {
-        location.href = ("/draw/define/");
+        submit = submit.toLowerCase();
+        var http = new XMLHttpRequest();
+        http.open('HEAD', "https://api.dictionaryapi.dev/api/v2/entries/en/" + submit, false);
+        http.send();
+        if (http.status == 404) {
+            console.log(submit);
+            document.getElementById("check_box").style.backgroundColor = 'red';
+        }
+        else {
+            localStorage.setItem('word', submit);
+            location.href = ("/draw/define/");
+        }
     };
 
     window.onload = function() {
