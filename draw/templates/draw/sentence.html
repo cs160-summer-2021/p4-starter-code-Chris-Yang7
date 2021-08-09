@@ -231,6 +231,24 @@
         location.href = ("/draw/saved/");
     };
 
+        adding_list = ["the", "he", "and", "but", "say", "that", "like", "have", "will", "for"]
+
+
+    window.onload = function() {
+        var createdWord = localStorage.getItem('word');
+
+        var num1 = Math.floor(Math.random() * (10))
+        add1 = adding_list[num1];
+        var num2 = Math.floor(Math.random() * (10))
+        while (num2 == num1) {
+            num2 = Math.floor(Math.random() * (10))
+        }
+        add2 = adding_list[num2]
+        document.getElementById("w2").innerHTML = add1;
+        document.getElementById("w3").innerHTML = add2;
+        document.getElementById("w1").innerHTML = createdWord;
+    };
+    
 </script>
 </html>
 
