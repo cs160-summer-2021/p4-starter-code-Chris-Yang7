@@ -289,15 +289,16 @@ if the word does not exist, raise an alart to the user-->
     }
     .letter {
         top: 210px;
-
         font-family: Numans;
         font-style: normal;
         font-weight: bold;
         font-size: 48px;
         line-height: 42px;
         text-align: center;
-
+        padding-top: 15px;
         color: #EDE7E3;
+        border: 1px solid #FFFFFF;
+        border-radius: 20px;
     }
     .check {
         font-family: Numans;
@@ -311,6 +312,46 @@ if the word does not exist, raise an alart to the user-->
 
         color: #EDE7E3;
     }
+
+    .sb {
+        font-family: 'Numans';
+        text-align: center;
+        color: #EDE7E3;
+        font-size: 20px;
+        padding-top: 5px;
+    }
+
+    #check_box:hover {
+        background-color: #b49543;
+    }
+
+    #b1_1:hover {
+        background-color: #b49543;
+    }
+    #b1_2:hover {
+        background-color: #b49543;
+    }
+    #b1_3:hover {
+        background-color: #b49543;
+    }
+    #b2_1:hover {
+        background-color: #b49543;
+    }
+    #b2_2:hover {
+        background-color: #b49543;
+    }
+    #b2_3:hover {
+        background-color: #b49543;
+    }
+    #b3_1:hover {
+        background-color: #b49543;
+    }
+    #b3_2:hover {
+        background-color: #b49543;
+    }
+    #b3_3:hover {
+        background-color: #b49543;
+    }
     </style>
 
 </head>
@@ -320,89 +361,51 @@ if the word does not exist, raise an alart to the user-->
     <img id = 'home' src="../../static/image/home.png">
     <div id = 'title'>Word Creation</div>
     <div id = 'b1_1' class = "letter">
-    <P></P>
-    N
     </div>
     <div id = 'b1_2' class = "letter">
-    <P></P>
-    O
     </div>
     <div id = 'b1_3' class = "letter">
-    <P></P>
-    I
     </div>
     <div id = 'b2_1' class = "letter">
-    <P></P>
-    E
     </div>
     <div id = 'b2_2' class = "letter">
-    <P></P>
-    A
     </div>
     <div id = 'b2_3' class = "letter">
-    <P></P>
-    T
     </div>
     <div id = 'b3_1' class = "letter">
-    <P></P>
-    D
     </div>
     <div id = 'b3_2' class = "letter">
-    <P></P>
-    U
     </div>
     <div id = 'b3_3' class = "letter">
-    <P></P>
-    C
     </div>
     <button id = 'shuffle'><img src = "../../static/image/shuffle.png"></button>
-    <div id = 'words'>Number of Possible Words: 339</div>
-    <div id = 'counter'>Word Found: 21</div>
-    <div id = 'sb_1'></div>
-    <div id = 'sb_2'></div>
-    <div id = 'sb_3'></div>
-    <div id = 'sb_4'></div>
-    <div id = 'sb_5'></div>
-    <div id = 'sb_6'></div>
-    <div id = 'sb_7'></div>
-    <div id = 'sb_8'></div>
-    <div id = 'sb_9'></div>
+    <div id = 'words'></div>
+    <div id = 'counter'></div>
+    <div id = 'sb_1' class = 'sb'></div>
+    <div id = 'sb_2' class = 'sb'></div>
+    <div id = 'sb_3' class = 'sb'></div>
+    <div id = 'sb_4' class = 'sb'></div>
+    <div id = 'sb_5' class = 'sb'></div>
+    <div id = 'sb_6' class = 'sb'></div>
+    <div id = 'sb_7' class = 'sb'></div>
+    <div id = 'sb_8' class = 'sb'></div>
+    <div id = 'sb_9' class = 'sb'></div>
     <button id = 'check_box' class = "check">Check</button>
-
 
     </div>
 </body>
 <script>
+    const words = ["PRESIDENT", "EDUCATION", "PINEAPPLE", 'DANGEROUS', 'AMBULANCE', 'WONDERFUL', 'NUTRITION', 'BEAUTIFUL'];
+    const possible = [500, 339, 114, 581, 187, 258, 83, 165];
+    var checks = [true, true, true, true, true, true, true, true, true]
+    var word = "";
+    var shuffled = "";
+    var found = 0;
+    var count = 0;
+    var submit = "";
 
-    // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    path.strokeColor = "red";
-
-    // getting the URL (you may want to use for Exercise 3)
-    var url = window.location.href;
-
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/draw');
-
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + "}" );
-    }
-
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
-    }
-
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
+    var id = [];
+    var div = [];
 
     document.getElementById("home").onclick = function () {
         location.href = ("/draw/home/");
@@ -411,5 +414,254 @@ if the word does not exist, raise an alart to the user-->
     document.getElementById("check_box").onclick = function () {
         location.href = ("/draw/define/");
     };
+
+    window.onload = function() {
+        var num = Math.floor(Math.random() * (8))
+        word = words[num];
+        shuffled = word.split('').sort(function(){return 0.5-Math.random()}).join('');
+        document.getElementById("b1_1").innerHTML = shuffled[0];
+        document.getElementById("b1_2").innerHTML = shuffled[1];
+        document.getElementById("b1_3").innerHTML = shuffled[2];
+        document.getElementById("b2_1").innerHTML = shuffled[3];
+        document.getElementById("b2_2").innerHTML = shuffled[4];
+        document.getElementById("b2_3").innerHTML = shuffled[5];
+        document.getElementById("b3_1").innerHTML = shuffled[6];
+        document.getElementById("b3_2").innerHTML = shuffled[7];
+        document.getElementById("b3_3").innerHTML = shuffled[8];
+        document.getElementById("words").innerHTML = 'Number of Possible Words: ' + possible[num];
+        document.getElementById("counter").innerHTML = 'Words Found: ' + 0;
+    };
+
+    document.getElementById("shuffle").onclick = function () {
+        if (checks.every(Boolean)) {
+            shuffled = word.split('').sort(function(){return 0.5-Math.random()}).join('');
+            document.getElementById("b1_1").innerHTML = shuffled[0];
+            document.getElementById("b1_2").innerHTML = shuffled[1];
+            document.getElementById("b1_3").innerHTML = shuffled[2];
+            document.getElementById("b2_1").innerHTML = shuffled[3];
+            document.getElementById("b2_2").innerHTML = shuffled[4];
+            document.getElementById("b2_3").innerHTML = shuffled[5];
+            document.getElementById("b3_1").innerHTML = shuffled[6];
+            document.getElementById("b3_2").innerHTML = shuffled[7];
+            document.getElementById("b3_3").innerHTML = shuffled[8];
+        }
+    };
+
+    document.getElementById("b1_1").onclick = function () {
+        if (checks[0] == true) {
+            id.unshift(0);
+            div.unshift("b1_1");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[0];
+            submit += shuffled[0];
+            document.getElementById("b1_1").style.backgroundColor = "Orangered";
+            checks[0] = false;
+        }
+    };
+
+    document.getElementById("b1_2").onclick = function () {
+        if (checks[1] == true) {
+            id.unshift(1);
+            div.unshift("b1_2");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[1];
+            submit += shuffled[1];
+            document.getElementById("b1_2").style.backgroundColor = "Orangered";
+            checks[1] = false;
+        }
+    };
+
+    document.getElementById("b1_3").onclick = function () {
+        if (checks[2] == true) {
+            id.unshift(2);
+            div.unshift("b1_3");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[2];
+            submit += shuffled[2];
+            document.getElementById("b1_3").style.backgroundColor = "Orangered";
+            checks[2] = false;
+        }
+    };
+
+    document.getElementById("b2_1").onclick = function () {
+        if (checks[3] == true) {
+            id.unshift(3);
+            div.unshift("b2_1");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[3];
+            submit += shuffled[3];
+            document.getElementById("b2_1").style.backgroundColor = "Orangered";
+            checks[3] = false;
+        }
+    };
+
+    document.getElementById("b2_2").onclick = function () {
+        if (checks[4] == true) {
+            id.unshift(4);
+            div.unshift("b2_2");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[4];
+            submit += shuffled[4];
+            document.getElementById("b2_2").style.backgroundColor = "Orangered";
+            checks[4] = false;
+        }
+    };
+
+    document.getElementById("b2_3").onclick = function () {
+        if (checks[5] == true) {
+            id.unshift(5);
+            div.unshift("b2_3");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[5];
+            submit += shuffled[5];
+            document.getElementById("b2_3").style.backgroundColor = "Orangered";
+            checks[5] = false;
+        }
+    };
+
+    document.getElementById("b3_1").onclick = function () {
+        if (checks[6] == true) {
+            id.unshift(6);
+            div.unshift("b3_1");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[6];
+            submit += shuffled[6];
+            document.getElementById("b3_1").style.backgroundColor = "Orangered";
+            checks[5] = false;
+        }
+    };
+
+    document.getElementById("b3_2").onclick = function () {
+        if (checks[7] == true) {
+            id.unshift(7);
+            div.unshift("b3_2");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[7];
+            submit += shuffled[7];
+            document.getElementById("b3_2").style.backgroundColor = "Orangered";
+            checks[7] = false;
+        }
+    };
+
+    document.getElementById("b3_3").onclick = function () {
+        if (checks[8] == true) {
+            id.unshift(8);
+            div.unshift("b3_3");
+            count += 1;
+            document.getElementById("sb_" + count).innerHTML = shuffled[8];
+            submit += shuffled[8];
+            document.getElementById("b3_3").style.backgroundColor = "Orangered";
+            checks[8] = false;
+        }
+    };
+
+    document.getElementById("sb_1").onclick = function () {
+        if (count == 1) {
+            count -= 1;
+            document.getElementById("sb_1").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_2").onclick = function () {
+        if (count == 2) {
+            count -= 1;
+            document.getElementById("sb_2").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_3").onclick = function () {
+        if (count == 3) {
+            count -= 1;
+            document.getElementById("sb_3").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_4").onclick = function () {
+        if (count == 4) {
+            count -= 1;
+            document.getElementById("sb_4").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_5").onclick = function () {
+        if (count == 5) {
+            count -= 1;
+            document.getElementById("sb_5").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_6").onclick = function () {
+        if (count == 6) {
+            count -= 1;
+            document.getElementById("sb_6").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_7").onclick = function () {
+        if (count == 7) {
+            count -= 1;
+            document.getElementById("sb_7").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_8").onclick = function () {
+        if (count == 8) {
+            count -= 1;
+            document.getElementById("sb_8").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
+    document.getElementById("sb_9").onclick = function () {
+        if (count == 9) {
+            count -= 1;
+            document.getElementById("sb_9").innerHTML = "";
+            submit = submit.slice(0, -1);
+            document.getElementById(div[0]).style.backgroundColor = "#FFA62B";
+            checks[id[0]] = true;
+            id.shift();
+            div.shift();
+        }
+    };
+
 </script>
 </html>

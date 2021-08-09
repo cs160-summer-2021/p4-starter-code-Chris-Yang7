@@ -111,13 +111,16 @@
     /* Position the content inside the overlay */
     .overlay-content {
         position: relative;
-        top: 10%; /* 25% from the top */
+        top: 7%; /* 25% from the top */
         width: 100%; /* 100% width */
         text-align: center; /* Centered text/links */
         margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
         font-family: "Numans";
         font-size: 20px;
         color: whitesmoke;
+        margin: auto;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .overlay .closebtn {
@@ -126,6 +129,11 @@
         right: 45px;
         font-size: 45px;
         color: red;
+    }
+
+    #instruction {
+        font-size: 48px;
+        font-weight: bolder;
     }
 
     </style>
@@ -166,7 +174,13 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <!-- Overlay content -->
             <div class="overlay-content">
-                Instructions
+                <div id = 'instruction'>
+                    Instructions
+                </div>
+                <br>
+                <div id = 'rest'>
+                    Welcome to LearnIt! The goal of this application is to help those who are learning English as their non-primary language.  To begin, tap start, which randomly generates a series of letters for you to unscramble.  Upon discovering a word, hit check to verify the word.  Next, review the definition of the word and form it into a sentence for which you can check the grammar of.  Once you learn a word, it will be saved into your personal saved words list that you can check anytime you enter the app. Go out and learn!
+                </div>
             </div></div>
     </div>
 </body>
