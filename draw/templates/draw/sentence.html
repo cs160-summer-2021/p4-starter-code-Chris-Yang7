@@ -212,43 +212,17 @@
     <p id = 'w2'>word2</p>
     <div id = 'r3'></div>
     <p id = 'w3'>word3</p>
-    <textarea placeholder="Type sentence here"></textarea>
+    <textarea spellcheck="true" placeholder="Type sentence here"></textarea>
     <button id = 'check_box' class = "check">Check</button>
+
+</textarea>
+<input type="button" value="Spell Check in a Dialog" onclick="$Spelling.SpellCheckInWindow('myTextArea')" />
 
     </div>
 </body>
 <script>
 
-    // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    path.strokeColor = "red";
-
-    // getting the URL (you may want to use for Exercise 3)
-    var url = window.location.href;
-
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/draw');
-
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + "}" );
-    }
-
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
-    }
-
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
-
+    // navigation
     document.getElementById("home").onclick = function () {
         location.href = ("/draw/home/");
     };
@@ -263,3 +237,4 @@
 
 </script>
 </html>
+
