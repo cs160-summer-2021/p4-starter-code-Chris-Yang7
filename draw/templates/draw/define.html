@@ -103,6 +103,12 @@
         width: 300px;
     }
 
+    #pos3 {
+        font-size: 26px;
+        color: #16697A;
+        width: 300px;
+    }
+
     li {
         font-size: 18px;
         color: #16697A;
@@ -135,6 +141,7 @@
         <div id = 'rectangle' lang="en-US">  
             <ul id = "pos1"></ul>
             <ul id = "pos2"></ul>
+            <ul id = "pos3"></ul>
             <div id="google_translate_element"></div>
         </div>
         
@@ -164,30 +171,26 @@
         const data = await result.json();
         word.innerText = data[0].word;
         audio.src = data[0].phonetics[0].audio;
-        // first part of speech (max 3 definitions)
+        // first part of speech
         pos1.innerText = data[0].meanings[0].partOfSpeech;
-        var def1 = data[0].meanings[0].definitions[0].definition;
-        $("#pos1").append('<li>' + def1 + '</li>');
-        if (data[0].meanings[0].definitions.length > 1) {
-            var def2 = data[0].meanings[0].definitions[1].definition;
-            $("#pos1").append('<li>' + def2 + '</li>');
+        for (var i = 0; i < data[0].meanings[0].definitions.length; i++) {
+            var def = data[0].meanings[0].definitions[i].definition;
+            $("#pos1").append('<li>' + def + '</li>');
         }
-        if (data[0].meanings[0].definitions.length > 2) {
-            var def3 = data[0].meanings[0].definitions[2].definition;
-            $("#pos1").append('<li>' + def3 + '</li>');
-        }
-        // second part of speech (max 3 definitions)
+        // second part of speech if it exists
         if (data[0].meanings.length > 1) {
             pos2.innerText = data[0].meanings[1].partOfSpeech;
-            var def4 = data[0].meanings[1].definitions[0].definition;
-            $("#pos2").append('<li>' + def4 + '</li>');
-            if (data[0].meanings[1].definitions.length > 1) {
-                var def5 = data[0].meanings[0].definitions[1].definition;
-                $("#pos2").append('<li>' + def5 + '</li>');
+            for (var k = 0; k < data[0].meanings[1].definitions.length; k++) {
+                var def = data[0].meanings[1].definitions[k].definition;
+                $("#pos2").append('<li>' + def + '</li>');
             }
-            if (data[0].meanings[1].definitions.length > 2) {
-                var def6 = data[0].meanings[0].definitions[2].definition;
-                $("#pos2").append('<li>' + def6 + '</li>');
+        }
+        // third part of speech if it exists
+        if (data[0].meanings.length > 2) {
+            pos3.innerText = data[0].meanings[2].partOfSpeech;
+            for (var j = 0; j < data[0].meanings[2].definitions.length; j++) {
+                var def = data[0].meanings[2].definitions[j].definition;
+                $("#pos3").append('<li>' + def + '</li>');
             }
         }
     };
