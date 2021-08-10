@@ -41,7 +41,6 @@
         height: 66px;
         left: 0px;
         top: 91px;
-
         font-family: Numans;
         font-style: normal;
         font-weight: normal;
@@ -65,7 +64,6 @@
         text-align: center;
         color: #EDE7E3;
     }
-
     #check_box {
         position: absolute;
         width: 137px;
@@ -90,7 +88,6 @@
 
         color: #EDE7E3;
     }
-
     .fa-arrow-left {
         position: absolute;
         left: 5.07%;
@@ -101,14 +98,12 @@
         font-size: 30px;
         font-weight: lighter;
     }
-
     /* rectangle */
     #word1 {
       width: 186px;
       height: 30px;
       background-color: #489fb5;
     }
-
     /* rectangle */
     #r1 {
         position: absolute;
@@ -119,8 +114,6 @@
         background: #C0E7EE;
         border-radius: 20px;
     }
-
-
     table {
       position: absolute;
       width: 320px;
@@ -136,7 +129,6 @@
       border: 4px solid #16697A;
       border-radius: 10px;
     }
-
     td {
       border: 4px solid #16697A;
       border-radius: 10px;
@@ -147,16 +139,13 @@
       color:#EDE7E3;
       line-height: 50px;
       height: 65;
-    }
-    
+    }  
     .fa-book {
         color: orange;
     }
-
     .def {
         height: 40px;
     }
-
     </style>
 
 </head>
@@ -166,7 +155,7 @@
       <i id="back" class="fa fa-arrow-left"></i>
       <img id = 'home' src="../../static/image/home.png">
       <div id = 'title'>Saved Words</div>
-      <table id = 'table'>
+      <table id = 'table' cellpadding=3>
         <tr>
           <td id="word1">happy <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
@@ -204,7 +193,7 @@
             <td id="word12">giraffe <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-            <td id="word13">panda <img class='def' src="../../static/image/dictionary.png"></td>
+            <td id="word13">bear <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
       </table>
   </div>
@@ -214,11 +203,14 @@
     var table = document.getElementById("table");
     var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
-    cell1.innerHTML = localStorage.getItem('word');
+    cell1.innerHTML = localStorage.getItem('word') + ' ';
     var image = document.createElement("img");
     image.setAttribute("src","../../static/image/dictionary.png");
     image.setAttribute("height", "40");
     cell1.appendChild(image);
+    cell1.onclick = function() {
+        location.href = ("/draw/define/");
+    };
 
     document.getElementById("home").onclick = function () {
         location.href = ("/draw/home/");
