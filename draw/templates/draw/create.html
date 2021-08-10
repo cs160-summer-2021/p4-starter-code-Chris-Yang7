@@ -281,7 +281,7 @@ if the word does not exist, raise an alart to the user-->
         left: 140px;
         top: 771px;
 
-        background: #FFA62B;
+        background-color: #FFA62B;
         border: 1px solid #EDE7E3;
         box-sizing: border-box;
         border-radius: 20px;
@@ -417,13 +417,22 @@ if the word does not exist, raise an alart to the user-->
         http.send();
         if (http.status == 404) {
             console.log(submit);
-            document.getElementById("check_box").style.backgroundColor = 'red';
+            highlight();
         }
         else {
             localStorage.setItem('word', submit);
             location.href = ("/draw/define/");
         }
     };
+
+    function highlight() {
+        var el = document.getElementById('check_box');
+        var original = el.style.backgroundColor;
+        el.style.backgroundColor='red';
+        window.setTimeout(function() { el.style.backgroundColor = original; }, 400);
+    }
+
+
 
     window.onload = function() {
         var num = Math.floor(Math.random() * (8))
