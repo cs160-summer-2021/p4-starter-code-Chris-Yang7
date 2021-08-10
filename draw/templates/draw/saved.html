@@ -26,6 +26,7 @@
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+        overflow-y: scroll;
     }
     #home {
         position: absolute;
@@ -108,10 +109,6 @@
       background-color: #489fb5;
     }
 
-    #word2 :: word1 {
-
-    }
-
     /* rectangle */
     #r1 {
         position: absolute;
@@ -123,98 +120,11 @@
         border-radius: 20px;
     }
 
-    /* word */
-    #w1 {
-        position: absolute;
-        width: 115px;
-        height: 60px;
-        left: 81px;
-        top: 390px;
-        font-family: Numans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 30px;
-        line-height: 35px;
-        align-items: center;
-        text-align: center;
-        color: #16697A;
-        z-index: 100;
-    }
-
-    #r2 {
-        position: absolute;
-        width: 115px;
-        height: 60px;
-        left: 225px;
-        top: 377px;
-        background: #C0E7EE;
-        border-radius: 20px;
-    }
-
-    #w2 {
-        position: absolute;
-        width: 115px;
-        height: 60px;
-        left: 225px;
-        top: 390px;
-        font-family: Numans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 30px;
-        line-height: 35px;
-        align-items: center;
-        text-align: center;
-        color: #16697A;
-    }
-
-    #r3 {
-        position: absolute;
-        width: 115px;
-        height: 60px;
-        left: 81px;
-        top: 459px;
-        background: #C0E7EE;
-        border-radius: 20px;
-    }
-
-    #w3 {
-        position: absolute;
-        width: 115px;
-        height: 60px;
-        left: 81px;
-        top: 472px;
-        font-family: Numans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 30px;
-        line-height: 35px;
-        text-align: center;
-        color: #16697A;
-    }
-
-    textarea {
-        margin-top: 550px;
-        margin-left: 81px;
-        height: 180px;
-        width: 260px;
-        border-radius: 10px;
-        border: none;
-        background-color: #EDE7E3;
-        outline: none;
-        color: #16697A;
-        font-size: 20px;
-    }
-
-    textarea::-webkit-input-placeholder {
-        color: #16697A;
-        font-size: 20px;
-        text-align: center;
-    }
 
     table {
       position: absolute;
-      width: 372px;
-      left: 21px;
+      width: 320px;
+      left: 50px;
       top: 193px;
       /* top: 50%; */
       font-family: Numans;
@@ -227,17 +137,24 @@
       border-radius: 10px;
     }
 
-    th, td {
-      border: 2px solid #16697A;
+    td {
+      border: 4px solid #16697A;
       border-radius: 10px;
       font-family: Numans;
       font-style: normal;
       font-weight: normal;
       font-size: 30px;
       color:#EDE7E3;
-      line-height: 35px;
-      height: 65
-      text-align: center;
+      line-height: 50px;
+      height: 65;
+    }
+    
+    .fa-book {
+        color: orange;
+    }
+
+    .def {
+        height: 40px;
     }
 
     </style>
@@ -249,164 +166,131 @@
       <i id="back" class="fa fa-arrow-left"></i>
       <img id = 'home' src="../../static/image/home.png">
       <div id = 'title'>Saved Words</div>
-      <table>
+      <table id = 'table'>
         <tr>
-          <td><div id="word1">President</div></td>
-          <td><div id="word2">Beautiful</div></td>
+          <td id="word1">happy <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td><div id="word3">Ambulance</div></td>
-          <td><div id="word4">Wonderful</div></td>
+          <td id="word2">crocodile <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td><div id="word5">Dangerous</div></td>
-          <td><div id="word6">Wishful</div></td>
+          <td id="word3">beautiful <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td id="word7">Education</td>
-          <td id="word8">Stress</td>
+            <td id="word4">education <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td id="word9">Loyalty</td>
-          <td id="word10">Bleak</td>
+            <td id="word5">marvelous <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td> </td>
-          <td> </td>
+            <td id="word6">hungry <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td> </td>
-          <td> </td>
-        </tr
-        <tr>
-          <td> </td>
-          <td> </td>
-        </tr
-        <tr>
-          <td> </td>
-          <td> </td>
+            <td id="word7">classroom <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
         <tr>
-          <td> </td>
-          <td> </td>
-        </tr
+            <td id="word8">dangerous <img class='def' src="../../static/image/dictionary.png"></td>
+        </tr>
         <tr>
-          <td> </td>
-          <td> </td>
+            <td id="word9">president <img class='def' src="../../static/image/dictionary.png"></td>
+        </tr>
+        <tr>
+            <td id="word10">penguin <img class='def' src="../../static/image/dictionary.png"></td>
+        </tr>
+        <tr>
+            <td id="word11">kangaroo <img class='def' src="../../static/image/dictionary.png"></td>
+        </tr>
+        <tr>
+            <td id="word12">giraffe <img class='def' src="../../static/image/dictionary.png"></td>
+        </tr>
+        <tr>
+            <td id="word13">panda <img class='def' src="../../static/image/dictionary.png"></td>
         </tr>
       </table>
-
-      <!-- <div id='example-container'>
-        <div id='example-row'>
-          <div id='example-col'>
-              Eat
-          </div>
-          <div id='example-col'>
-              Deal
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col'>
-                Lake
-          </div>
-          <div class='col'>
-              Bark
-          </div>
-        </div>
-        <div class='row'>
-            <div class='col'>
-                <span class="border #EDE7E3">Walk</span>
-            </div>
-            <div class='col'>
-                <span class="border #EDE7E3">    </span>
-            </div>
-        </div>
-      </div> -->
   </div>
 </body>
 <script>
 
-    // setting up the canvas and one paper tool
-    var canvas = document.getElementById('myCanvas');
-    paper.setup(canvas);
-    var tool = new paper.Tool();
-    var path = new paper.Path();
-    var uid = Date.now() % 10000;
-    path.strokeColor = "red";
-
-    // getting the URL (you may want to use for Exercise 3)
-    var url = window.location.href;
-
-    var socket = new WebSocket(
-        'ws://' + window.location.host + '/ws/draw');
-
-    tool.onMouseMove = function(event) { //http://paperjs.org/reference/tool/ path examples
-       path.add(event.point);
-       // You may need to add code here if you want to pass any other information.
-       socket.send("{\"x\" : " + event.point.x + ", \"y\" : " + event.point.y + ", \"uid\" : " + uid + "}" );
-    }
-
-    socket.onmessage = function(receivedMessage) {
-        var received = JSON.parse(receivedMessage.data);
-        console.log("Received: " + JSON.stringify(received));
-        // You will probably want to add some code here to draw more lines.
-    }
-
-    socket.onclose = function(e) {
-        console.error('Chat socket closed unexpectedly');
-    };
+    var table = document.getElementById("table");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    cell1.innerHTML = localStorage.getItem('word');
+    var image = document.createElement("img");
+    image.setAttribute("src","../../static/image/dictionary.png");
+    image.setAttribute("height", "40");
+    cell1.appendChild(image);
 
     document.getElementById("home").onclick = function () {
         location.href = ("/draw/home/");
     };
-
-
     document.getElementById("back").onclick = function () {
-        location.href = ("/draw/sentence/");
+        location.href = ("/draw/create/");
     };
-
-    document.getElementById("back").onclick = function () {
-        location.href = ("/draw/define/");
-    };
-
     document.getElementById("word1").onclick = function() {
+        var word = document.getElementById("word1").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word2").onclick = function() {
+        var word = document.getElementById("word2").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word3").onclick = function() {
+        var word = document.getElementById("word3").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word4").onclick = function() {
+        var word = document.getElementById("word4").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word5").onclick = function() {
+        var word = document.getElementById("word5").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word6").onclick = function() {
+        var word = document.getElementById("word6").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word7").onclick = function() {
+        var word = document.getElementById("word7").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word8").onclick = function() {
+        var word = document.getElementById("word8").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
-
     document.getElementById("word9").onclick = function() {
+        var word = document.getElementById("word9").textContent;
+        localStorage.setItem('word', word);
+        location.href = ("/draw/define/");
+    };
+    document.getElementById("word10").onclick = function() {
+        var word = document.getElementById("word10").textContent;
+        localStorage.setItem('word', word);
+        location.href = ("/draw/define/");
+    };
+    document.getElementById("word11").onclick = function() {
+        var word = document.getElementById("word11").textContent;
+        localStorage.setItem('word', word);
+        location.href = ("/draw/define/");
+    };
+    document.getElementById("word12").onclick = function() {
+        var word = document.getElementById("word12").textContent;
+        localStorage.setItem('word', word);
+        location.href = ("/draw/define/");
+    };
+    document.getElementById("word13").onclick = function() {
+        var word = document.getElementById("word13").textContent;
+        localStorage.setItem('word', word);
         location.href = ("/draw/define/");
     };
 
-    document.getElementById("word10").onclick = function()
-        location.href = ("/draw/define/");
-    };
 </script>
 </html>
