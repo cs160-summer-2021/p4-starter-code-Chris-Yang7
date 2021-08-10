@@ -196,6 +196,10 @@
         text-align: center;
     }
 
+    #validate {
+        text-align: center;
+    }
+
     </style>
 
 </head>
@@ -212,11 +216,12 @@
     <p id = 'w2'>word2</p>
     <div id = 'r3'></div>
     <p id = 'w3'>word3</p>
-    <textarea spellcheck="true" placeholder="Type sentence here"></textarea>
+    <textarea id = 'validate' spellcheck="true" placeholder="Type sentence here"></textarea>
     <button id = 'check_box' class = "check">Check</button>
     </div>
 </body>
 <script>
+    var words = [];
 
     // navigation
     document.getElementById("home").onclick = function () {
@@ -228,10 +233,24 @@
     };
 
     document.getElementById("check_box").onclick = function () {
-        location.href = ("/draw/saved/");
+        var check = document.getElementById("validate").value;
+        if (check.includes(words[0]) && check.includes(words[1]) && check.includes(words[2])) {
+            location.href = ("/draw/saved/");
+        }
+        else {
+            document.getElementById("validate").value = "Make Sure to Use All 3 Words"
+            highlight();
+        }
     };
 
-        adding_list = ["the", "he", "and", "but", "say", "that", "like", "have", "will", "for"]
+    function highlight() {
+        var el = document.getElementById('check_box');
+        var original = el.style.backgroundColor;
+        el.style.backgroundColor='red';
+        window.setTimeout(function() { el.style.backgroundColor = original; }, 400);
+    }
+
+    var adding_list = ["the", "he", "and", "but", "say", "that", "like", "have", "will", "for"]
 
 
     window.onload = function() {
@@ -244,6 +263,7 @@
             num2 = Math.floor(Math.random() * (10))
         }
         add2 = adding_list[num2]
+        words = [createdWord, add1, add2];
         document.getElementById("w2").innerHTML = add1;
         document.getElementById("w3").innerHTML = add2;
         document.getElementById("w1").innerHTML = createdWord;
