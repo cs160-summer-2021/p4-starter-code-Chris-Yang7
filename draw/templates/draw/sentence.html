@@ -233,7 +233,7 @@
     };
 
     document.getElementById("check_box").onclick = function () {
-        var check = document.getElementById("validate").value;
+        var check = document.getElementById("validate").value.toLowerCase();
         if (check.includes(words[0]) && check.includes(words[1]) && check.includes(words[2])) {
             location.href = ("/draw/saved/");
         }
