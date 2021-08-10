@@ -246,7 +246,7 @@
 <body>
     <div id = 'screen'>
       <!-- User will be given the word they created and a few other words to create a sentence -->
-      <i class="fa fa-arrow-left"></i>
+      <i id="back" class="fa fa-arrow-left"></i>
       <img id = 'home' src="../../static/image/home.png">
       <div id = 'title'>Saved Words</div>
       <table>
@@ -370,52 +370,42 @@
     };
 
     document.getElementById("word1").onclick = function() {
-        localStorage.setItem('word', 'President');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word2").onclick = function() {
-        localStorage.setItem('word', 'Beautiful');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word3").onclick = function() {
-        localStorage.setItem('word', 'Ambulance');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word4").onclick = function() {
-        localStorage.setItem('word', 'Wonderful');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word5").onclick = function() {
-        localStorage.setItem('word', 'Dangerous');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word6").onclick = function() {
-        localStorage.setItem('word', 'Wishful');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word7").onclick = function() {
-        localStorage.setItem('word', 'Stress');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word8").onclick = function() {
-        localStorage.setItem('word', 'Education');
         location.href = ("/draw/define/");
     };
 
     document.getElementById("word9").onclick = function() {
-        localStorage.setItem('word', 'Loyalty');
         location.href = ("/draw/define/");
     };
 
-    document.getElementById("word10").onclick = function() {
-        localStorage.setItem('word', 'Bleak');
+    document.getElementById("word10").onclick = function()
         location.href = ("/draw/define/");
     };
 </script>
