@@ -8,12 +8,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>P4 Drawing</title>
+    <title>Saved Words</title>
 
     <link rel="stylesheet" type="text/css" href="{% static 'draw/vendor/bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'draw/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'draw/vendor/paper/paper-full.min.js' %}"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Numans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style type="text/css">
     #screen {
         height: 900px;
@@ -26,19 +27,305 @@
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
     }
-    </style>
+    #home {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        left: 360px;
+        top: 17px;
+    }
+    #title {
+        position: absolute;
+        width: 414px;
+        height: 66px;
+        left: 0px;
+        top: 91px;
 
-    <!-- Definition of word created by user is shown on this page -->
-    https://api.dictionaryapi.dev/api/v2/entries/<language_code>/<word>
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 46px;
+        line-height: 54px;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+    #instructions {
+        position: absolute;
+        width: 372px;
+        height: 70px;
+        left: 21px;
+        top: 193px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+        color: #EDE7E3;
+    }
+
+    #check_box {
+        position: absolute;
+        width: 137px;
+        height: 63px;
+        left: 140px;
+        top: 771px;
+
+        background: #FFA62B;
+        border: 1px solid #EDE7E3;
+        box-sizing: border-box;
+        border-radius: 20px;
+    }
+    .check {
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 36px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #EDE7E3;
+    }
+
+    .fa-arrow-left {
+        position: absolute;
+        left: 5.07%;
+        right: 88.89%;
+        top: 2.79%;
+        bottom: 94.42%;
+        color: #EDE7E3;
+        font-size: 30px;
+        font-weight: lighter;
+    }
+
+    /* rectangle */
+    #word1 {
+      width: 186px;
+      height: 30px;
+      background-color: #489fb5;
+    }
+
+    #word2 :: word1 {
+
+    }
+
+    /* rectangle */
+    #r1 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 377px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    /* word */
+    #w1 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 390px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        align-items: center;
+        text-align: center;
+        color: #16697A;
+        z-index: 100;
+    }
+
+    #r2 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 225px;
+        top: 377px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    #w2 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 225px;
+        top: 390px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        align-items: center;
+        text-align: center;
+        color: #16697A;
+    }
+
+    #r3 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 459px;
+        background: #C0E7EE;
+        border-radius: 20px;
+    }
+
+    #w3 {
+        position: absolute;
+        width: 115px;
+        height: 60px;
+        left: 81px;
+        top: 472px;
+        font-family: Numans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 35px;
+        text-align: center;
+        color: #16697A;
+    }
+
+    textarea {
+        margin-top: 550px;
+        margin-left: 81px;
+        height: 180px;
+        width: 260px;
+        border-radius: 10px;
+        border: none;
+        background-color: #EDE7E3;
+        outline: none;
+        color: #16697A;
+        font-size: 20px;
+    }
+
+    textarea::-webkit-input-placeholder {
+        color: #16697A;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    table {
+      position: absolute;
+      width: 372px;
+      left: 21px;
+      top: 193px;
+      /* top: 50%; */
+      font-family: Numans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px;
+      line-height: 35px;
+      text-align: center;
+      border: 4px solid #16697A;
+      border-radius: 10px;
+    }
+
+    th, td {
+      border: 2px solid #16697A;
+      border-radius: 10px;
+      font-family: Numans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 30px;
+      color:#EDE7E3;
+      line-height: 35px;
+      height: 65
+      text-align: center;
+    }
+
+    </style>
 
 </head>
 <body>
-    <!-- You may change the dimensions of this canvas -->
     <div id = 'screen'>
+      <!-- User will be given the word they created and a few other words to create a sentence -->
+      <i class="fa fa-arrow-left"></i>
+      <img id = 'home' src="../../static/image/home.png">
+      <div id = 'title'>Saved Words</div>
+      <table>
+        <tr>
+          <td><div id="word1">President</div></td>
+          <td><div id="word2">Beautiful</div></td>
+        </tr>
+        <tr>
+          <td><div id="word3">Ambulance</div></td>
+          <td><div id="word4">Wonderful</div></td>
+        </tr>
+        <tr>
+          <td><div id="word5">Dangerous</div></td>
+          <td><div id="word6">Wishful</div></td>
+        </tr>
+        <tr>
+          <td id="word7">Education</td>
+          <td id="word8">Stress</td>
+        </tr>
+        <tr>
+          <td id="word9">Loyalty</td>
+          <td id="word10">Bleak</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr
+        <tr>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </table>
 
-    </div>
+      <!-- <div id='example-container'>
+        <div id='example-row'>
+          <div id='example-col'>
+              Eat
+          </div>
+          <div id='example-col'>
+              Deal
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col'>
+                Lake
+          </div>
+          <div class='col'>
+              Bark
+          </div>
+        </div>
+        <div class='row'>
+            <div class='col'>
+                <span class="border #EDE7E3">Walk</span>
+            </div>
+            <div class='col'>
+                <span class="border #EDE7E3">    </span>
+            </div>
+        </div>
+      </div> -->
+  </div>
 </body>
 <script>
+
     // setting up the canvas and one paper tool
     var canvas = document.getElementById('myCanvas');
     paper.setup(canvas);
@@ -69,5 +356,67 @@
         console.error('Chat socket closed unexpectedly');
     };
 
+    document.getElementById("home").onclick = function () {
+        location.href = ("/draw/home/");
+    };
+
+
+    document.getElementById("back").onclick = function () {
+        location.href = ("/draw/sentence/");
+    };
+
+    document.getElementById("back").onclick = function () {
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word1").onclick = function() {
+        localStorage.setItem('word', 'President');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word2").onclick = function() {
+        localStorage.setItem('word', 'Beautiful');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word3").onclick = function() {
+        localStorage.setItem('word', 'Ambulance');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word4").onclick = function() {
+        localStorage.setItem('word', 'Wonderful');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word5").onclick = function() {
+        localStorage.setItem('word', 'Dangerous');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word6").onclick = function() {
+        localStorage.setItem('word', 'Wishful');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word7").onclick = function() {
+        localStorage.setItem('word', 'Stress');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word8").onclick = function() {
+        localStorage.setItem('word', 'Education');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word9").onclick = function() {
+        localStorage.setItem('word', 'Loyalty');
+        location.href = ("/draw/define/");
+    };
+
+    document.getElementById("word10").onclick = function() {
+        localStorage.setItem('word', 'Bleak');
+        location.href = ("/draw/define/");
+    };
 </script>
 </html>
