@@ -347,6 +347,24 @@ if the word does not exist, raise an alart to the user-->
     #b3_3:hover {
         background-color: #b49543;
     }
+    #wrong {
+        margin-top: 850px;
+        font-family: Numans;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: #C0E7EE;
+        display: none;
+    }
+    #correct {
+        margin-top: 850px;
+        font-family: Numans;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: #C0E7EE;
+        display: none;
+    }
     </style>
 
 </head>
@@ -386,6 +404,8 @@ if the word does not exist, raise an alart to the user-->
     <div id = 'sb_8' class = 'sb'></div>
     <div id = 'sb_9' class = 'sb'></div>
     <button id = 'check_box' class = "check">Check</button >
+    <div id = 'wrong'>Word does not exist. Try again!</div>
+    <div id = 'correct'>Word exists! Check the definition now...</div>
 
     </div>
 </body>
@@ -416,15 +436,24 @@ if the word does not exist, raise an alart to the user-->
             highlight();
         }
         else {
-            localStorage.setItem('word', submit);
-            location.href = ("/draw/define/");
+            definition();
         }
     };
+
+    function definition() {
+        document.getElementById('correct').style.display = 'block';
+        document.getElementById("counter").innerHTML = 'Words Found: ' + 1;
+        localStorage.setItem('word', submit);
+        window.setTimeout(function() { window.location.href = "/draw/define/";}, 1000);
+    }
 
     function highlight() {
         var el = document.getElementById('check_box');
         var original = el.style.backgroundColor;
         el.style.backgroundColor='red';
+        wrong = document.getElementById('wrong');
+        wrong.style.display='block';
+        window.setTimeout(function() { wrong.style.display = 'none'; }, 4000);
         window.setTimeout(function() { el.style.backgroundColor = original; }, 400);
     }
 

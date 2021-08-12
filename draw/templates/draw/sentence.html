@@ -199,6 +199,15 @@
     #validate {
         text-align: center;
     }
+    #caption {
+        margin-top: 110px;
+        font-family: Numans;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: #C0E7EE;
+        display: none;
+    }
 
     </style>
 
@@ -218,6 +227,7 @@
     <p id = 'w3'>word3</p>
     <textarea id = 'validate' spellcheck="true" placeholder="Type sentence here"></textarea>
     <button id = 'check_box' class = "check">Check</button>
+    <div id = 'caption'>Good job, you have learned the word! Adding it to your saved words...</div>
     </div>
 </body>
 <script>
@@ -235,7 +245,8 @@
     document.getElementById("check_box").onclick = function () {
         var check = document.getElementById("validate").value.toLowerCase();
         if (check.includes(words[0]) && check.includes(words[1]) && check.includes(words[2])) {
-            location.href = ("/draw/saved/");
+            document.getElementById("caption").style.display = 'block';
+            window.setTimeout(function() { window.location.href = "/draw/saved/";}, 4000);
         }
         else {
             document.getElementById("validate").placeholder = "Make Sure to Use All 3 Words"
